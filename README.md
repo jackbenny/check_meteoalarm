@@ -1,4 +1,4 @@
-# check_meteoalarm.php
+# check_meteoalarm
 
 This is a Nagios plugin written in PHP to look for weather alerts on the site
 http://www.meteoalarm.eu. The plugin checks a specific region, which is entered
