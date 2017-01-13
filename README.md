@@ -11,7 +11,7 @@ be used as a critical tool for weather alerts.
 ## Requirements
 
 PHP version 5 or higher with cURL. To install these packages on Debian/Ubuntu
-enter `sudo apt-get install php5-cli php-curl`. That should be enough to get the
+enter `sudo apt-get install php5-cli php5-curl`. That should be enough to get the
 script running.
 
 ## Usage
@@ -23,7 +23,10 @@ For example
 	./check_meteoalarm.php http://www.meteoalarm.eu/en_UK/0/0/SE002-Sk%E5ne.html
 	
 Note that the URL must be the english version (en_UK), otherwise the script
-can't regex for the correct strings.
+can't regex for the correct strings. You can change language on the bottom of
+the site. Otherwise the direct URL for the english site is
+http://www.meteoalarm.eu/en_UK/0/0/EU-Europa:.html
+
 
 ### Usage within Nagios (on Debian systems)
 
