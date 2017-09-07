@@ -44,12 +44,12 @@ $data = curl_exec($ch);
 curl_close($ch);
 
 // Get all the warnings for the selected region
-preg_match_all("/class=\"text\"\>(.*)&nbsp;/i", $data, $warnMatches);
+preg_match_all('/<div class="info"><b>(.*)&nbsp;<\/b><span style="position\:absolute\; right\:0px\;"> Awareness Level: <b>(.*)&nbsp;/i', $data, $warnMatches);
 
 // If no warnings were found, check for the text "No special awarenes required"
 // to make sure we're actually scanning a Meteoalarm page. If we're not, print
 // an error message about it and exit with code 3 (UNKNOWN).
-if (empty($warnMatches[1]))
+if (empty($warnMatches[2]))
 {
     if(preg_match("/No special awareness required/", $data))
     {
@@ -74,7 +74,7 @@ else
         printf("CRITICAL - "); // Start the message with "CRITICAL"
         // Loop through all the warnings and print them
         foreach($warnMatches[1] as $warn)
-            printf($warn . "\n");
+            printf($warn . ". ");
         exit(2); // Code 2 = Critical
     }
     if (preg_match("/Yellow/", $data))
@@ -82,7 +82,7 @@ else
         printf("WARNING - "); // Start the message with "WARNING"
         // Loop through all the warnings and print them
         foreach($warnMatches[1] as $warn)
-            printf($warn . "\n");
+            printf($warn . ". ");
         exit(1); // Code 1 = Warning
     }
 
